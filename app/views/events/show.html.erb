@@ -4,3 +4,12 @@
 <p><%= @event.date %></p>
 <p><%= @event.location %></p>
 <p><%= @event.description %></p>
+<h3>Attendees:</h3>
+<% unless @attendees.empty? %>
+  <ul><%= @attendees.each do |attendee| %>
+    <li><%= attendee.name %></li>
+  </ul>
+  <% end %>
+<% else %>
+   <p>No attendees yet...</p>
+<% end %>
