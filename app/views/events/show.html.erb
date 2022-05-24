@@ -1,10 +1,9 @@
-<h1>All User Events</h1>
-
 <h1><%= @event.name %></h1>
 <p><%= @event.date %></p>
 <p><%= @event.location %></p>
 <p><%= @event.description %></p>
-<h3>Attendees:</h3>
+
+<h2>Attendees:</h2>
 <% unless @attendees.empty? %>
   <ul><%= @attendees.each do |attendee| %>
     <li><%= attendee.name %></li>
@@ -13,3 +12,5 @@
 <% else %>
    <p>No attendees yet...</p>
 <% end %>
+
+<%= button_to 'Attend Event', attended_events_path, params: { event_id: @event.id } %>
