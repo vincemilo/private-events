@@ -1,0 +1,18 @@
+<h1><%= @user.name %>'s Events</h1>
+<div><% if @hosted_events %>
+  <% @hosted_events.each do |event| %>
+        <li>
+        <h3><%= link_to event.name, event %></h3>
+        <p>Date: <%= event.date %></p>
+        <p>Location: <%= event.location %></p>
+        <p>Description: <%= event.description %></p>
+        </li>
+  <% end %>
+<% else %>
+  <p>No hosted events yet...</p>
+<% end %>
+</div>
+<div>
+<p><%= link_to "Back to Users", users_path %></p>
+<p><%= link_to "Back to Events", events_path %></p>
+</div>

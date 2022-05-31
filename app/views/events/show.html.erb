@@ -1,7 +1,13 @@
-<h1><%= @event.name %></h1>
-<p><%= @event.date %></p>
-<p><%= @event.location %></p>
-<p><%= @event.description %></p>
+<h1>User Event:</h1>
+  <p><%= user_signed_in? %></p>
+  <% if current_user == @event.creator %>
+    <h1><%= @event.name %></h1>
+    <p><%= @event.date %></p>
+    <p><%= @event.location %></p>
+    <p><%= @event.description %></p>
+<% else %>
+   <p>Not authorized</p>
+<% end %>
 
 <h2>Attendees:</h2>
 <% unless @attendees.empty? %>

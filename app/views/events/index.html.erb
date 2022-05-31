@@ -4,10 +4,11 @@
 <ul>
     <% @events.each do |event| %>
         <li>
-        <h3><%= event.name %></h3>
+        <h3><%= link_to event.name, event %></h3>
         <p>Date: <%= event.date %></p>
         <p>Location: <%= event.location %></p>
-        <p>Description: <%= event.description %></p></li>
+        <p>Description: <%= event.description %></p>
+        </li>
     <% end %>
 </ul>
 <% else %>
