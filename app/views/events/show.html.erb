@@ -1,14 +1,10 @@
-<h1>User Event:</h1>
-  <p><%= user_signed_in? %></p>
-  <% if current_user == @event.creator %>
-    <h1><%= @event.name %></h1>
-    <p><%= @event.date %></p>
-    <p><%= @event.location %></p>
-    <p><%= @event.description %></p>
-<% else %>
-   <p>Not authorized</p>
-<% end %>
-
+<div>
+  <h1><%= @event.name %></h1>
+  <p><%= @event.date %></p>
+  <p><%= @event.location %></p>
+  <p><%= @event.description %></p>
+</div>
+<div>
 <h2>Attendees:</h2>
 <% unless @attendees.empty? %>
   <ul><%= @attendees.each do |attendee| %>
@@ -18,5 +14,14 @@
 <% else %>
    <p>No attendees yet...</p>
 <% end %>
-
-<%= button_to 'Attend Event', attended_events_path, params: { event_id: @event.id } %>
+</div>
+<% if user_signed_in? %>
+<div>
+<p><%= button_to 'Attend Event', attended_events_path %></p>
+</div>
+<% else %>
+  <p>You must be <%= link_to 'signed in', new_user_session_path %> to attend events.</p>
+<% end %>
+<div>
+<p><%= link_to "Back to Events", events_path %></p>
+</div>
