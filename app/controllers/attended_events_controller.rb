@@ -6,7 +6,7 @@ class AttendedEventsController < ApplicationController
   end
 
   def create
-    @attended_event = current_user.attended_event.build(attended_event_params)
+    @attended_event = current_user.attended_events.build(attended_event_params)
 
     if @attended_event.save
       redirect_to current_event

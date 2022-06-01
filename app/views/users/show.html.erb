@@ -1,5 +1,5 @@
-<h1><%= @user.name %>'s Events</h1>
-<div><% if @hosted_events %>
+<h1><%= @user.email %>'s Hosted Events</h1>
+<div><% unless @hosted_events.empty? %>
   <% @hosted_events.each do |event| %>
         <li>
         <h3><%= link_to event.name, event %></h3>

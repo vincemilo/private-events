@@ -1,13 +1,15 @@
-<h1>Users</h1>
+<h1>All Users</h1>
 
 <% if @users %>
 <ul>
     <% @users.each do |user| %>
         <li>
-        <h3><%= link_to user.name, user %></h3>
+        <h3><%= link_to user.email, user %></h3>
         </li>
     <% end %>
 </ul>
 <% else %>
 <p>No users yet...</p>
 <% end %>
+
+<p><%= link_to "All Events", events_path %></p>

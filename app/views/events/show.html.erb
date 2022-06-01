@@ -8,7 +8,7 @@
 <h2>Attendees:</h2>
 <% unless @attendees.empty? %>
   <ul><%= @attendees.each do |attendee| %>
-    <li><%= attendee.name %></li>
+    <li><%= @user.attendedevents %></li>
   </ul>
   <% end %>
 <% else %>
