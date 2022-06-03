@@ -7,8 +7,8 @@
 <div>
 <h2>Attendees:</h2>
 <% unless @attendees.empty? %>
-  <ul><%= @attendees.each do |attendee| %>
-    <li><%= @user.attendedevents %></li>
+  <ul><% @attendees.each do |attendee| %>
+    <li><%= attendee.attendee.email %></li>
   </ul>
   <% end %>
 <% else %>
@@ -17,7 +17,7 @@
 </div>
 <% if user_signed_in? %>
 <div>
-<p><%= button_to 'Attend Event', attended_events_path %></p>
+<p><%= button_to 'Attend Event', event_attendings_path %></p>
 </div>
 <% else %>
   <p>You must be <%= link_to 'signed in', new_user_session_path %> to attend events.</p>
