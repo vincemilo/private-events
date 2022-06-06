@@ -6,18 +6,12 @@ class EventAttendingsController < ApplicationController
   end
 
   def create
-    @event_attending = current_user.event_attendings.build(event_attending_params)
+    @event_attending = current_user.event_attendings.build(attended_event_id: params[:attended_event_id])
 
     if @event_attending.save
-      redirect_to current_event
+      redirect_to Event.find(params[:attended_event_id])
     else
       render :new, status: :unprocessable_entity
     end
-  end
-
-  private
-
-  def event_attending_params
-    params.require(:event_attending).permit(:attendee_id, :attended_event_id)
   end
 end

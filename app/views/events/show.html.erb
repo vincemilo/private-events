@@ -4,25 +4,23 @@
   <p><%= @event.location %></p>
   <p><%= @event.description %></p>
 </div>
+
 <div>
 <h2>Attendees:</h2>
-<% @event.attendees.each do |attendee| %>
-<%= attendee.email %>
-<% end %>
-<% unless @attendees.empty? %>
-  <ul><% @attendees.each do |attendee| %>
-    <% if attendee.attended_event_id == @event.id %>
-      <li><%= User.find(attendee.id).email %></li>
-    <% end %>
-  </ul>
+<% if @event.attendees %>
+  <% @event.attendees.each do |attendee| %>
+    <ul>
+    <li><%= attendee.email %></li>
+    </ul>
   <% end %>
 <% else %>
    <p>No attendees yet...</p>
 <% end %>
 </div>
+
 <% if user_signed_in? %>
 <div>
-<p><%= button_to 'Attend Event', event_attendings_path %></p>
+<p><%= button_to 'Attend Event', event_attendings_path, params: { attended_event_id: @event.id } %></p>
 </div>
 <% else %>
   <p>You must be <%= link_to 'signed in', new_user_session_path %> to attend events.</p>
