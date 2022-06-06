@@ -6,9 +6,14 @@
 </div>
 <div>
 <h2>Attendees:</h2>
+<% @event.attendees.each do |attendee| %>
+<%= attendee.email %>
+<% end %>
 <% unless @attendees.empty? %>
   <ul><% @attendees.each do |attendee| %>
-    <li><%= attendee.attendee.email %></li>
+    <% if attendee.attended_event_id == @event.id %>
+      <li><%= User.find(attendee.id).email %></li>
+    <% end %>
   </ul>
   <% end %>
 <% else %>
