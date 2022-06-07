@@ -6,12 +6,19 @@ class EventAttendingsController < ApplicationController
   end
 
   def create
-    @event_attending = current_user.event_attendings.build(attended_event_id: params[:attended_event_id])
+    current_event = Event.find(params[:attended_event_id])
+    if current_user.attended_events.include?(current_event)
+      flash[:alert] = 'Already Attending!'
+      redirect_to event_path(current_event), status: :unprocessable_entity
+      return
+    else
+      @event_attending = current_user.event_attendings.build(attended_event_id: params[:attended_event_id])      
+    end
 
     if @event_attending.save
-      redirect_to Event.find(params[:attended_event_id])
+      redirect_to event_path(current_event)
     else
-      render :new, status: :unprocessable_entity
+      redirect_to event_path(current_event), status: :unprocessable_entity
     end
   end
 end
