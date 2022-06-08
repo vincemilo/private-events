@@ -9,4 +9,9 @@ class UsersController < ApplicationController
     @hosted_events = @user.events
     @attended_events = @user.attended_events
   end
+
+  def edit
+    
+  end
+
 end
