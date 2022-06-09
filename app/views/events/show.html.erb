@@ -5,6 +5,12 @@
   <p><%= @event.description %></p>
 </div>
 
+<% if user_signed_in? %>
+  <div>
+    <%= link_to "Edit Event", edit_event_path(@event) %>
+  </div>
+<% end %>
+
 <div>
 <h2>Attendees:</h2>
 <% if @event.attendees %>
@@ -19,9 +25,9 @@
 </div>
 
 <% if user_signed_in? %>
-<div>
-<p><%= button_to 'Attend Event', event_attendings_path, params: { attended_event_id: @event.id } %></p>
-</div>
+  <div>
+    <p><%= button_to 'Attend Event', event_attendings_path, params: { attended_event_id: @event.id } %></p>
+  </div>
 <% else %>
-  <p>You must be <%= link_to 'signed in', new_user_session_path %> to attend events.</p>
+  <p>You must be <%= link_to 'signed in', new_user_session_path %> to edit/attend events.</p>
 <% end %>

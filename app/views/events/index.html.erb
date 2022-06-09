@@ -1,5 +1,9 @@
 <h1>All Events</h1>
 
+<div>
+  <%= link_to 'New Event', new_event_path %>
+</div>
+
 <% if @events %>
 <ul>
     <% @events.each do |event| %>
