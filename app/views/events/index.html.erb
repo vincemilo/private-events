@@ -1,7 +1,7 @@
 <h1>All Events</h1>
 
 <div>
-  <%= link_to 'New Event', new_event_path %>
+  <%= link_to 'Create New Event', new_event_path %>
 </div>
 
 <% if @events %>
@@ -9,9 +9,6 @@
     <% @events.each do |event| %>
         <li>
         <h3><%= link_to event.name, event %></h3>
-        <p>Date: <%= event.date %></p>
-        <p>Location: <%= event.location %></p>
-        <p>Description: <%= event.description %></p>
         </li>
     <% end %>
 </ul>

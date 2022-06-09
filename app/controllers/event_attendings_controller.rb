@@ -12,7 +12,7 @@ class EventAttendingsController < ApplicationController
       redirect_to event_path(current_event), status: :unprocessable_entity
       return
     else
-      @event_attending = current_user.event_attendings.build(attended_event_id: params[:attended_event_id])      
+      @event_attending = current_user.event_attendings.build(attended_event_id: params[:attended_event_id])
     end
 
     if @event_attending.save
@@ -20,5 +20,12 @@ class EventAttendingsController < ApplicationController
     else
       redirect_to event_path(current_event), status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @event_attending = current_user.event_attendings.find_by(params[:attended_event_id])
+    @event_attending.destroy
+
+    redirect_to event_path([:id]), status: :see_other
   end
 end

@@ -1,13 +1,19 @@
 <div>
   <h1><%= @event.name %></h1>
-  <p><%= @event.date %></p>
-  <p><%= @event.location %></p>
-  <p><%= @event.description %></p>
+  <p>Date: <%= @event.date %></p>
+  <p>Location: <%= @event.location %></p>
+  <p>Description: <%= @event.description %></p>
 </div>
 
 <% if user_signed_in? %>
   <div>
-    <%= link_to "Edit Event", edit_event_path(@event) %>
+    <ul>
+    <li><%= link_to "Edit Event", edit_event_path(@event) %></li>
+    <li><%= link_to "Delete event", event_path(@event), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></li>
+    </ul>
   </div>
 <% end %>
 
@@ -27,6 +33,11 @@
 <% if user_signed_in? %>
   <div>
     <p><%= button_to 'Attend Event', event_attendings_path, params: { attended_event_id: @event.id } %></p>
+    <% if current_user.attended_events.include?(@event) %>
+      <p><%= link_to 'Leave Event', event_attending_path(@event), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?" } %></p>
+    <% end %>
   </div>
 <% else %>
   <p>You must be <%= link_to 'signed in', new_user_session_path %> to edit/attend events.</p>
