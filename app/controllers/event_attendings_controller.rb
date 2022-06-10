@@ -23,7 +23,7 @@ class EventAttendingsController < ApplicationController
   end
 
   def destroy
-    @event_attending = current_user.event_attendings.find_by(params[:attended_event_id])
+    @event_attending = current_user.event_attendings.find_by(params[:id])
     @event_attending.destroy
 
     redirect_to event_path([:id]), status: :see_other
