@@ -5,8 +5,17 @@
 </div>
 
 <% if @events %>
+  <h2>Past Events</h2>
+  <ul>
+      <% @events.past.each do |event| %>
+          <li>
+          <h3><%= link_to event.name, event %></h3>
+          </li>
+      <% end %>
+  </ul>
+  <h2>Upcoming Events</h2>
 <ul>
-    <% @events.each do |event| %>
+    <% @events.upcoming.each do |event| %>
         <li>
         <h3><%= link_to event.name, event %></h3>
         </li>

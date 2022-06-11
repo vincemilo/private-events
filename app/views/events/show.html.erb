@@ -14,7 +14,13 @@
                     turbo_confirm: "Are you sure?"
                   } %></li>
     </ul>
+  <div>
     <p>Invite Attendees:</p>
+  <% if @users %>
+    <% @users.each do |user| %>
+      <%= user %>
+    <% end %>
+  <% end %>    
   </div>
 <% end %>
 
