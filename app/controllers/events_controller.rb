@@ -9,6 +9,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @attendees = EventAttending.all
     @users = User.all
+    @event_attending = EventAttending.find(params[:attended_event_id])
   end
 
   def new

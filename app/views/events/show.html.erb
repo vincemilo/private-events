@@ -14,14 +14,16 @@
                     turbo_confirm: "Are you sure?"
                   } %></li>
     </ul>
-  <div>
+
+  <div data-turbo='false'>
     <p>Invite Attendees:</p>
-  <% if @users %>
-    <% @users.each do |user| %>
-      <%= user %>
+    <%= form_with model: @event_attending do |form| %>
+    <%= form.collection_check_boxes :invitation, @users, :id, :email %>
+    <%= form.submit 'Invite' %>
     <% end %>
-  <% end %>    
+
   </div>
+
 <% end %>
 
 <div>
