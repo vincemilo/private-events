@@ -19,7 +19,8 @@
     <p>Invite Attendees:</p>
     <%= form_with model: @event_attending do |form| %>
     <%= form.collection_check_boxes :invitation, @users, :id, :email %>
-    <%= form.submit 'Invite' %>
+    <%= form.submit 'Invite', edit_event_attending_path, params: {
+      invitation: :true } %>
     <% end %>
 
   </div>
