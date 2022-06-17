@@ -33,7 +33,7 @@ class EventAttendingsController < ApplicationController
     if @event_attending.update(params[:invite])
       redirect_to event_path(current_event)
     else
-      redirect_to event_path(current_event), status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -44,3 +44,8 @@ class EventAttendingsController < ApplicationController
     redirect_to event_path([:id]), status: :see_other
   end
 end
+
+
+# @event_attending = EventAttending.where(
+#   'attended_event_id = ? AND attendee_id = ?', params[:attended_event_id],
+#   params[:attendee_id])

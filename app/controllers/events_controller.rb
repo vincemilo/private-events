@@ -9,9 +9,6 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @attendees = EventAttending.all
     @users = User.all
-    @event_attending = EventAttending.where(
-      'attended_event_id = ? AND attendee_id = ?', params[:attended_event_id],
-      params[:attendee_id])
   end
 
   def new

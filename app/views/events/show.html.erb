@@ -15,13 +15,8 @@
                   } %></li>
     </ul>
 
-  <div data-turbo='false'>
-    <p>Invite Attendees:</p>
-    <%= form_with model: @event_attending do |form| %>
-    <%= form.collection_check_boxes :invitation, @users, :id, :email %>
-    <%= form.submit 'Invite', edit_event_attending_path, params: {
-      invitation: :true } %>
-    <% end %>
+  <p><%= link_to 'Invite Attendees', new_event_attending_path(@event) %></p>
+
 
   </div>
 
